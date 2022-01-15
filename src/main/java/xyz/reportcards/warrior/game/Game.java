@@ -48,7 +48,6 @@ public class Game {
     }
 
     public void addDead(Player player, Player killer) {
-//        Bukkit.broadcast(Common.parse("Deaded: " + player.getName() + " " + killer.getName()));
         if (players.contains(player.getUniqueId())) {
             dead.add(player.getUniqueId());
             broadcastDeath(player, killer);
@@ -58,10 +57,6 @@ public class Game {
                 }
             }
             if (getAlive().size() <= 1) {
-//                Bukkit.broadcast(Common.parse("Only 1 player left? Winner Wowowowow"));
-//                Bukkit.broadcast(Common.parse("All Dead: " + Arrays.toString(Arrays.stream(getDead().toArray(new UUID[0])).map((u) -> getPlayer(u).getName()).toArray(String[]::new))));
-//                Bukkit.broadcast(Common.parse("&7"));
-//                Bukkit.broadcast(Common.parse("All Alive: " + Arrays.toString(Arrays.stream(getAlive().toArray(new UUID[0])).map((u) -> getPlayer(u).getName()).toArray(String[]::new))));
                 endGame();
                 return;
             }
@@ -72,7 +67,7 @@ public class Game {
                     player.getInventory().clear();
                     player.setFoodLevel(20);
                     player.setHealth(20);
-                    player.teleport(Common.getInstance().getConfigHandler().getConfig().getLocation("game.spawns.spectator"));
+                    player.teleport(Common.getInstance().getConfigHandler().getSpawn("spectator"));
                 }
             }.runTaskLater(Common.getInstance(), 5);
         }
@@ -118,17 +113,15 @@ public class Game {
         }
         gameState = GameStatus.RUNNING;
         setupPlayers(randomPlayer);
-//        Bukkit.broadcast(Common.parse("player1: " + player1.getName() + " player2: " + player2.getName()));
     }
 
     private void setupPlayers(Player alive) {
         player1 = alive;
         player2 = getRandomPlayer(alive.getUniqueId());
-//        Bukkit.broadcast(Common.parse("Fighting " + player1.getName() + " and " + player2.getName()));
         Title title = Title.title(Common.parse("&7"), Common.parse("&cYou are playing!"));
         List<Player> playing = Arrays.asList(player1, player2);
-        player1.teleportAsync(Objects.requireNonNull(Common.getInstance().getConfigHandler().getConfig().getLocation("game.spawns.1")));
-        player2.teleportAsync(Objects.requireNonNull(Common.getInstance().getConfigHandler().getConfig().getLocation("game.spawns.2")));
+        player1.teleportAsync(Common.getInstance().getConfigHandler().getSpawn("1"));
+        player2.teleportAsync(Common.getInstance().getConfigHandler().getSpawn("2"));
         for (Player player : playing) {
             player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20, 7));
             player.setHealth(20);
@@ -149,9 +142,6 @@ public class Game {
     private List<UUID> getAlive() {
         List<UUID> alive = new ArrayList<>(players);
         alive.removeAll(dead);
-//        Bukkit.broadcast(Common.parse("Dead people: " + Arrays.toString(dead.stream().map(uuid -> getPlayer(uuid).getName()).toList().toArray(new String[0]))));
-//        Bukkit.broadcast(Common.parse("Alive people: " + Arrays.toString(alive.stream().map(uuid -> getPlayer(uuid).getName()).toList().toArray(new String[0]))));
-//        Bukkit.broadcast(Common.parse("All people: " + Arrays.toString(players.stream().map(uuid -> getPlayer(uuid).getName()).toList().toArray(new String[0]))));
         return alive;
     }
 
@@ -189,9 +179,7 @@ public class Game {
             for (UUID player : players) {
                 Player p = getPlayer(player);
                 if (p == null) continue;
-                p.teleport(Objects.requireNonNull(
-                        Common.getInstance().getConfigHandler().getConfig().getLocation("game.spawns.spectator")
-                ));
+                p.teleport(Common.getInstance().getConfigHandler().getSpawn("spectator"));
                 p.getInventory().clear();
                 p.setHealth(20);
             }
@@ -224,7 +212,7 @@ public class Game {
                     victim.getInventory().clear();
                     victim.setFoodLevel(20);
                     victim.setHealth(20);
-                    victim.teleport(Common.getInstance().getConfigHandler().getConfig().getLocation("game.spawns.spectator"));
+                    victim.teleport(Common.getInstance().getConfigHandler().getSpawn("spectator"));
                 }
             }.runTaskLater(Common.getInstance(), 5);
         }

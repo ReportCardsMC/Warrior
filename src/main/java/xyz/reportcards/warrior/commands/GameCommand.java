@@ -86,7 +86,7 @@ public class GameCommand extends BaseCommand {
         if (!spawns.contains(spawn)) {
             player.sendMessage(Common.parse("&cGame &4&l> &fInvalid spawn type, use one of the following: &c" + String.join(", ", spawns)));
         } else {
-            Location spawnLocation = Common.getInstance().getConfigHandler().getConfig().getLocation("game.spawns." + spawn);
+            Location spawnLocation = Common.getInstance().getConfigHandler().getSpawn(spawn);
             if (spawnLocation == null) {
                 player.sendMessage(Common.parse("&cGame &4&l> &fSpawn location not found."));
             } else {

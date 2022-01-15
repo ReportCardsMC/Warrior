@@ -19,7 +19,7 @@ public class ConnectionListeners implements Listener {
                 "&a+ &f%s has joined the server",
                 p.getName()
         )));
-        p.teleport(Objects.requireNonNull(Common.getInstance().getConfigHandler().getConfig().getLocation("game.spawns.spectator")));
+        p.teleport(Common.getInstance().getConfigHandler().getSpawn("spectator"));
        if (!Common.getInstance().getGame().getGameState().isStartedState()) Common.getInstance().getGame().addPlayer(p);
         p.setGameMode(GameMode.ADVENTURE);
         p.getInventory().clear();
