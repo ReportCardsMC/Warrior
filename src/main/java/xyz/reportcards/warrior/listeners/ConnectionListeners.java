@@ -8,8 +8,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import xyz.reportcards.warrior.utils.Common;
 
-import java.util.Objects;
-
 public class ConnectionListeners implements Listener {
 
     @EventHandler
@@ -20,7 +18,8 @@ public class ConnectionListeners implements Listener {
                 p.getName()
         )));
         p.teleport(Common.getInstance().getConfigHandler().getSpawn("spectator"));
-       if (!Common.getInstance().getGame().getGameState().isStartedState()) Common.getInstance().getGame().addPlayer(p);
+        if (!Common.getInstance().getGame().getGameState().isStartedState())
+            Common.getInstance().getGame().addPlayer(p);
         p.setGameMode(GameMode.ADVENTURE);
         p.getInventory().clear();
     }

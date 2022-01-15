@@ -9,16 +9,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class ConfigHandler {
 
     @Getter private final Plugin plugin;
-    @Getter private FileConfiguration config;
+    @Getter private final FileConfiguration config;
 
     public ConfigHandler(JavaPlugin plugin) {
         this.plugin = plugin;
         plugin.saveDefaultConfig();
-        this.config = plugin.getConfig();
-    }
-
-    public void reloadConfig() {
-        plugin.reloadConfig();
         this.config = plugin.getConfig();
     }
 

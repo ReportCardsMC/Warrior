@@ -17,7 +17,6 @@ import xyz.reportcards.warrior.game.Game;
 import xyz.reportcards.warrior.utils.Common;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @CommandAlias("game")
 @CommandPermission("warrior.game")
@@ -138,7 +137,7 @@ public class GameCommand extends BaseCommand {
                     int i = 0;
                     Random r = new Random();
                     for (Vector vector : Common.offset(List.of(Common.generateCircle(50, 20f)), new Vector(1297.5, 80, -376.5))) {
-                        i+=1;
+                        i += 1;
                         Bukkit.getScheduler().runTaskLater(Common.getInstance(), () -> {
                             Firework firework = (Firework) kup.getWorld().spawnEntity(vector.toLocation(game.getGameWorld()), EntityType.FIREWORK);
                             FireworkMeta fm = firework.getFireworkMeta();
@@ -146,7 +145,7 @@ public class GameCommand extends BaseCommand {
                             firework.setFireworkMeta(fm);
                         }, i);
                     }
-                    i+=5;
+                    i += 5;
                     Bukkit.getScheduler().runTaskLater(Common.getInstance(), () -> {
                         for (Vector vector : Common.offset(List.of(Common.generateCircle(5, 5f)), new Vector(1297.5, 70, -376.5))) {
                             Firework firework = (Firework) kup.getWorld().spawnEntity(vector.toLocation(game.getGameWorld()), EntityType.FIREWORK);
