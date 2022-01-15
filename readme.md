@@ -1,6 +1,6 @@
 # Warrior (Gauntlet)
 
-Immense cranium, Kurtis (a nerd)
+Immense cranium, Kurtis (a nerd) (Streamed here: [https://www.youtube.com/watch?v=LeFxbUi5Jkg](https://www.youtube.com/watch?v=LeFxbUi5Jkg)
 
 Made within **5 hours** after being messaged by Kurtis about the game the night before the stream.
 All major bugs were able to be patched before the stream started.
