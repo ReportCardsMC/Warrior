@@ -1,0 +1,5 @@
+name: Warrior
+version: '${project.version}'
+main: xyz.reportcards.warrior.Warrior
+api-version: 1.18
+authors: [ ReportCards ]
